@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+    <style>
+      body {
+        overflow: hidden;
+        margin: 0;
+        overflow: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var weight = 3;
+      var r ;
+      var g ;
+      var b ;
+
+      function setup(){
+        createCanvas(w,h);
+      }
+      
+      function draw(){
+        if (mouseIsPressed){
+        strokeWeight(weight);
+        line(pmouseX,pmouseY,mouseX,mouseY);
+        }
+      }
+      //when R key is pressed, change color to red
+      //when G key is pressed, change color to green
+      //When Q key is pressed, choose random color
+      function keyPressed(){
+        if (keyCode == 82) {
+          r = (256);
+          g = (0);
+          b = (0);
+          stroke(color(r,g,b));
+        }
+        if (keyCode == 71) {
+          r = (0);
+          g = (256);
+          b = (0);
+          stroke(color(r,g,b));
+        }
+        if (keyCode == 81) {
+          r = random(256);
+          g = random(256);
+          b = random(256);
+          stroke(color(r,g,b));
+        }
+        if (keyCode == 69) {
+          r = (255);
+          g = (255);
+          b = (255);
+          stroke(color(r,g,b));
+        }
+        if (keyCode == 38) {
+          weight += 1;
+        }
+        if (keyCode == 40) {
+          weight += -1;
+        }
+        if (keyCode == 83) {
+          var x = prompt("What do you wanna call this?")
+          save(x+".jpeg");
+        }
+      }
+      
+      
+    </script>
+  </body>
+</html>
