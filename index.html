@@ -1,0 +1,95 @@
+<html>
+  <head>
+  <script src ="p5.min.js"></script>
+  <style>
+    
+  </style>
+  </head>
+  <body>
+    <h1>SCORE:</h1>
+    <h1 id="score"></h1>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var d;
+      //creating new object globally
+      var ball = new ball();
+      var ball2 = new ball2();
+      var score = 0;
+      
+      function setup() {
+        createCanvas(w,h);
+      }
+      
+      function draw() {
+        background(255);
+        ball.show();
+        ball.move();
+        ball2.show();
+        ball2.move();
+        ball2.kill;
+      }
+      
+      function ball() {
+        this.x = 700;
+        this.y = 100;
+        this.show = function(){
+          fill(color('red'));
+          ellipse(this.x,this.y,50,50);
+        };
+        this.move = function() {
+          if ((keyIsDown(68)) && (this.x < w-65)) {//right
+           //d arrow key
+           this.x += 10;
+         }
+         if ((keyIsDown(65)) && (this.x > 50)) {//left
+           //a key
+           this.x -= 10;
+         }
+         if ((keyIsDown(87)) && (this.y > 50)) {//up
+           //w key
+           this.y -= 10;
+         }
+         if ((keyIsDown(83)) && (this.y < h-100)) {//down
+           //s key
+           this.y += 10;
+         }
+        }
+      }
+      
+      function ball2() {
+        this.x = 100;
+        this.y = 100;
+        this.show = function(){
+          fill(color('blue'));
+          ellipse(this.x,this.y,50,50);
+        };
+        this.move = function() {
+          if ((keyIsDown(76)) && (this.x < w-65)) { //Right
+           //l key
+           this.x += 10;
+         }
+         if ((keyIsDown(74)) && (this.x > 50)) { //Left
+           //j key
+           this.x -= 10;
+         }
+         if ((keyIsDown(73)) && (this.y > 50)) { //Up
+           //i key
+           this.y -= 10;
+         }
+         if ((keyIsDown(75)) && (this.y < h-100)) { //Down
+           //k key
+           this.y += 10;
+          }
+        }
+          this.kill = function() {
+            d = dist(this.x,this.y,ball.x,ball.y);
+            if (d < 20) {
+              noLoop();
+              window.alert("YOU LOSE!");
+            }
+          }
+      }
+    </script>
+  </body>
+</html>
