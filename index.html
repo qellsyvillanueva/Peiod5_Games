@@ -1,0 +1,100 @@
+<html>
+  <head>
+  <script src ="p5.min.js"></script>
+  <style>
+    
+  </style>
+  </head>
+  <body>
+    <script>
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      // creating a variable to save for later in the kill function
+      var d;
+      //make a new object to create a red ball (ball)
+      var ball = new ball();
+      //creating a new object to create a blue ball (ball.2)
+      var ball2 = new ball2();
+      //creating empty object to save for later in the setup and draw functionss
+      var bs;
+      
+      function setup() {
+        createCanvas(w,h);
+        //load the background image of super mario bros level
+        bs = loadImage('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/0kjHIH6/super-mario-bros-platform-game-on-a-green-screen-background_vys_zen4g__F0000.png');
+      }
+      
+      function draw() {
+        //shows the backgorund image
+        background(bs);
+        //
+        ball.show();
+        ball.move();
+        ball2.show();
+        ball2.move();
+        ball2.kill();
+      }
+      
+      function ball() {
+        this.x = 700;
+        this.y = 50;
+        this.show = function(){
+          fill(color('red'));
+          ellipse(this.x,this.y,50,50);
+        };
+        this.move = function() {
+          if ((keyIsDown(68)) && (this.x < w-65)) {//right
+           //d arrow key
+           this.x += 15;
+         }
+         if ((keyIsDown(65)) && (this.x > 50)) {//left
+           //a key
+           this.x -= 15;
+         }
+         if ((keyIsDown(87)) && (this.y > 50)) {//up
+           //w key
+           this.y -= 15;
+         }
+         if ((keyIsDown(83)) && (this.y < h-108)) {//down
+           //s key
+           this.y += 15;
+          }
+        }
+      }
+      
+      function ball2() {
+        this.x = 50;
+        this.y = 500;
+        this.show = function(){
+          fill(color('blue'));
+          ellipse(this.x,this.y,50,50);
+        };
+        this.move = function() {
+          if ((keyIsDown(76)) && (this.x < w-65)) { //Right
+           //l key
+           this.x += 15;
+         }
+         if ((keyIsDown(74)) && (this.x > 50)) { //Left
+           //j key
+           this.x -= 15;
+         }
+         if ((keyIsDown(73)) && (this.y > 50)) { //Up
+           //i key
+           this.y -= 15;
+         }
+         if ((keyIsDown(75)) && (this.y < h-108)) { //Down
+           //k key
+           this.y += 15;
+          }
+        }
+        this.kill = function() {
+            d = dist(this.x,this.y,ball.x,ball.y);
+            if (d < 20) {
+              noLoop();
+              window.alert("RED LOSES! GAME OVER");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
