@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script src="p5.min.js"></script>
+    <style>
+      body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <script>
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var jumper = new jumper();
+    
+      function setup() {
+        createCanvas(w,h);
+      }
+      
+      function draw(){
+        background(0);
+        jumper.show();
+        jumper.update();
+      }
+      
+      function jumper() {
+        this.x = 650;
+        this.y = 0;
+        this.gravity =  2.5; // the force of gravity
+        this.lift = -40; // opposing the force of gravity
+        this.velocity = 0; // default speed
+        
+        this.show = function() {
+          fill(color('red'));
+          ellipse(this.x,this.y,50,50);
+        }
+        this.up = function() {
+          this.velocity += this.lift; // jumping function
+        }
+        this.update = function(){
+          this.velocity += this.gravity; // gravity applied when not jumping
+          this.y += this.velocity;
+          this.velocity *= 0.9; //air resistence
+          if (this.y > h) { //jumper hits the floor
+            this.y = h;
+            this.velocity = 0;
+          }
+          if (this.y < 0) { // when jumper hits the ceiling
+            this.y = 0;
+            this.velocity = 0;
+          }
+        }
+      } //jumper ends here
+      
+      function keyPressed() {
+        if (keyCode === 32) {
+          jumper.up();
+        }
+      }
+    </script>
+  </body>
+</html>
