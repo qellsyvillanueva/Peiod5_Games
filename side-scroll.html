@@ -1,6 +1,9 @@
 <html>
   <head>
     <script src="p5.min.js"></script>
+    <script src="p5.collide2d.min.js"></script>
+    <script src="jumper.js"></script>
+    <script src="barrier.js"></script>
     <style>
       body {
         overflow: hidden;
@@ -15,6 +18,9 @@
     var w = window.innerWidth;
     var h = window.innerHeight;
     var jumper = new jumper();
+    var barrier = new barrier();
+    var number = 0;
+    var hit = false;
     
       function setup() {
         createCanvas(w,h);
@@ -22,43 +28,14 @@
       
       function draw(){
         background(0);
+        textSize(50);
+        text("SCORE: " + number,10,50);
         jumper.show();
         jumper.update();
-      }
-      
-      function jumper() {
-        this.x = 650;
-        this.y = 0;
-        this.gravity =  2.5; // the force of gravity
-        this.lift = -40; // opposing the force of gravity
-        this.velocity = 0; // default speed
+        barrier.show();
+        barrier.update();
         
-        this.show = function() {
-          fill(color('red'));
-          ellipse(this.x,this.y,50,50);
-        }
-        this.up = function() {
-          this.velocity += this.lift; // jumping function
-        }
-        this.update = function(){
-          this.velocity += this.gravity; // gravity applied when not jumping
-          this.y += this.velocity;
-          this.velocity *= 0.9; //air resistence
-          if (this.y > h) { //jumper hits the floor
-            this.y = h;
-            this.velocity = 0;
-          }
-          if (this.y < 0) { // when jumper hits the ceiling
-            this.y = 0;
-            this.velocity = 0;
-          }
-        }
-      } //jumper ends here
-      
-      function keyPressed() {
-        if (keyCode === 32) {
-          jumper.up();
-        }
+        hit = collideRectRect(jumper.x,jumper.y,50,50,barrier.x,barrier.y,100,100);
       }
     </script>
   </body>
