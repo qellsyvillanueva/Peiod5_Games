@@ -1,6 +1,4 @@
-
-      
-      function jumper() {
+function jumper() {
         this.x = 50;
         this.y = 0;
         this.gravity =  1.5; // the force of gravity
@@ -8,8 +6,7 @@
         this.velocity = 0; // default speed
         
         this.show = function() {
-          fill(color('red'));
-          rect(this.x,this.y,50,50);
+          images(yoshi,this.x,this.y,50,100);
         };
         this.up = function() {
           this.velocity += this.lift; // jumping function
