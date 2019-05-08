@@ -2,7 +2,6 @@
 
   <head>
     <script src="p5.min.js"></script>
-    <script src="p5.geolocation.js"></script>
     <style>
       /* */
     </style>
@@ -12,7 +11,9 @@
     <h1 id="accelX"></h1>
     <script>
     var ax;
-    var xHigh = 0;
+    var rz;
+    var axHigh = 0;
+    var rzHigh = 0;
     
     function setup() {
       createCanvas(window.innerWidth,window.innerHeight);
@@ -21,9 +22,12 @@
     
     function draw() {
       ax = accelerationX;
-      if (ax < xHigh) {
+      rz = rotationZ;
+      ry = rotationY;
+      rx = rotationX;
+      if (ax < axHigh) {
       xHigh = ax;
-      document.getElementById('accelX').innerHTML = xHigh;
+      document.getElementById('accelX').innerHTML = axHigh;
       }
     }
     </script>
