@@ -10,12 +10,9 @@
 
   <body>
     <h1 id="accelX"></h1>
-    <h1 id="accelY"></h1>
     <script>
-    var jx;
-    var jy;
+    var ax;
     var xHigh = 0;
-    var yHigh = 0;
     
     function setup() {
       createCanvas(window.innerWidth,window.innerHeight);
@@ -23,13 +20,11 @@
     }
     
     function draw() {
-      jx = accelerationX;
-      if (jx < xHigh) {
-      xHigh = jx;
+      ax = accelerationX;
+      if (ax < xHigh) {
+      xHigh = ax;
       document.getElementById('accelX').innerHTML = xHigh;
       }
-      //jy = accelerationY;
-     // document.getElementById('jy').innerHTML - jy
     }
     </script>
   </body>
